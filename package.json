@@ -12,6 +12,9 @@
 	},
 	"keywords": [],
 	"license": "ISC",
+	"engines": {
+		"node": "18.x"
+	  },
 	"devDependencies": {
 		"@types/deepai": "^1.0.0",
 		"@types/fluent-ffmpeg": "^2.1.21",

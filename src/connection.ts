@@ -1,19 +1,30 @@
 import makeWASocket, {
 	DisconnectReason,
 	ConnectionState,
-	useMultiFileAuthState,
 	WASocket,
-} from "@adiwajshing/baileys";
+	makeCacheableSignalKeyStore,
+	useMultiFileAuthState
+} from '@adiwajshing/baileys';
 import pino from 'pino';
 import fs from 'fs';
+import NodeCache from 'node-cache';
+
+const logger = pino({ level: 'silent' });
+const msgRetryCounterCache = new NodeCache();
 
 export default async function whatsappConnection(callback: Function) {
 	const { state, saveCreds } = await useMultiFileAuthState('auth');
 
 	const client: WASocket = makeWASocket({
-		auth: state,
+		auth: {
+			creds: state.creds,
+			keys: makeCacheableSignalKeyStore(state.keys, logger),
+		},
 		printQRInTerminal: true,
-		logger: pino({ level: 'silent' })
+		logger,
+		syncFullHistory: true,
+		generateHighQualityLinkPreview: true,
+		msgRetryCounterCache
 	});
 
 	client.ev.on('creds.update', saveCreds);
@@ -21,13 +32,14 @@ export default async function whatsappConnection(callback: Function) {
 }
 
 function onConnection(client: WASocket, { connection, lastDisconnect }: Partial<ConnectionState>, callback: Function) {
-	if (connection === 'close') {
-		verifyAndReconnect(lastDisconnect, callback);
-	}
-
 	if (connection === 'open') {
 		console.log('WA-Connection: Connected success!');
 		callback(client)
+	}
+
+	if (connection === 'close') {
+		console.log('WA-Connection: Restarting');
+		verifyAndReconnect(lastDisconnect, callback);
 	}
 }
 

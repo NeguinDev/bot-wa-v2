@@ -4,4 +4,5 @@ dist/
 test.ts
 test.txt
 data/tmp/*
+data/baileys_store.json
 .env

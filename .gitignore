@@ -4,3 +4,4 @@ dist/
 test.ts
 test.txt
 data/tmp/*
+.env

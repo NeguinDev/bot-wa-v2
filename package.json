@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "Bot Whatsapp V2",
 	"author": "NeguinDev",
-	"main": "dist/index.cjs",
+	"main": "dist/index.js",
 	"scripts": {
 		"start": "tsx src/index.ts",
 		"dev": "tsx watch src/index.ts",

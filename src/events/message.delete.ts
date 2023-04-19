@@ -14,7 +14,7 @@ export function checkAndSaveDeletedMessage(client: WASocket, message: ParsedMess
 }
 
 export async function onMessageDelete(client: WASocket, data: proto.IWebMessageInfo) {
-	const message = parsedMessage(client, data);
+	const message = await parsedMessage(client, data);
 
 	if (!message.pure.message) return;
 

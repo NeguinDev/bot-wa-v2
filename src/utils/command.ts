@@ -1,20 +1,14 @@
 import { WASocket, isJidGroup } from '@adiwajshing/baileys';
-import fs from 'fs';
 import { ParsedMessage } from '@events/messages.upsert';
 import { getDB, isOwner } from './db';
 
-type CommandType = {
-	alias: string[],
-	run: Function,
-	category: ['owner', 'tool', 'general', 'ia', 'download', 'admin']
-};
-
-const pathFull = './src/commands';
-const pathRelative = '../commands';
-const commands = loadCommands();
+import * as _commands from '@commands';
+export const commands = Object.values(_commands);
 
 export async function runnerCommand(client: WASocket, message: ParsedMessage) {
-	const command = commands.find((value) => value.alias.includes(message.command?.toLowerCase?.()));
+	const command = commands.find((value) =>
+		value.alias.includes(message.command?.toLowerCase?.())
+	);
 
 	if (command) {
 		const { run } = command;
@@ -22,7 +16,7 @@ export async function runnerCommand(client: WASocket, message: ParsedMessage) {
 		await loadingCmd.start();
 
 		try {
-			if (!await checkPermissionBeforeExecuteCmd(message, command)) {
+			if (!(await checkPermissionBeforeExecuteCmd(message, command))) {
 				return await loadingCmd.end();
 			}
 
@@ -36,29 +30,10 @@ export async function runnerCommand(client: WASocket, message: ParsedMessage) {
 	}
 }
 
-export function loadCommands() {
-	const files = getFilesDir();
-	const handle: CommandType[] = files.map((file) => require(file));
-
-	return handle;
-}
-
-function getFilesDir(path: string = '') {
-	const result = fs.readdirSync(pathFull + path, { withFileTypes: true });
-	const files: string[] = [];
-
-	result.forEach((i) => {
-		if (i.isDirectory()) {
-			return files.push(...getFilesDir(`${path}/${i.name}`));
-		}
-
-		files.push(`${pathRelative}${path}/${i.name}`);
-	});
-
-	return files;
-}
-
-async function checkPermissionBeforeExecuteCmd(message: ParsedMessage, { category }: CommandType) {
+async function checkPermissionBeforeExecuteCmd(
+	message: ParsedMessage,
+	{ category }: { category: string[] }
+) {
 	const db = getDB();
 
 	if (db.blackList.includes(message.fromId)) {
@@ -71,11 +46,16 @@ async function checkPermissionBeforeExecuteCmd(message: ParsedMessage, { categor
 		return false;
 	}
 
-	if (category.includes('admin') && isJidGroup(message.chatId) && !message.admins?.includes(message.fromId)) {
-		if (isOwner(message.fromId))
-			return true;
-		
-		await message.reply('*Comando permitido apenas por administradores de um grupo!*')
+	if (
+		category.includes('admin') &&
+		isJidGroup(message.chatId) &&
+		!message.admins?.includes(message.fromId)
+	) {
+		if (isOwner(message.fromId)) return true;
+
+		await message.reply(
+			'*Comando permitido apenas por administradores de um grupo!*'
+		);
 		return false;
 	}
 
@@ -116,7 +96,9 @@ class LoadingCommand {
 		const reset = '\x1B[0m';
 		const yellow = '\x1B[33m';
 
-		console.log(`${blue}CMD:${reset} ${this.message.body} - ${yellow}${time}${reset}`);
+		console.log(
+			`${blue}CMD:${reset} ${this.message.body} - ${yellow}${time}${reset}`
+		);
 
 		// clearInterval(this.interval);
 

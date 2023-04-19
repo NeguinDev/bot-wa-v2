@@ -3,5 +3,16 @@
 		"556199955345"
 	],
 	"blackList": [],
-	"messagesIa": {}
+	"messagesIa": {
+		"556199955345@s.whatsapp.net": [
+			{
+				"role": "user",
+				"content": "oi"
+			},
+			{
+				"role": "assistant",
+				"content": "Olá! Como posso ajudar?"
+			}
+		]
+	}
 }

@@ -11,11 +11,7 @@
 		"sourceMap": true,
 		"baseUrl": ".",
 		"paths": {
-			"@events": ["./src/events/index"],
-			"@events/*": ["./src/events/*"],
-			"@commands*": ["./src/commands*"],
-			"@utils*": ["./src/utils*"],
-			"@services*": ["./src/services*"]
+			"@*": ["src/*"]
 		}
 	}
 }

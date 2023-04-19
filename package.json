@@ -5,9 +5,9 @@
 	"author": "NeguinDev",
 	"main": "dist/index.js",
 	"scripts": {
-		"start": "tsx src/index.ts",
+		"start": "node dist/index.js",
 		"dev": "tsx watch src/index.ts",
-		"prod": "tsup src && node dist/index.js",
+		"prod": "npm run build && npm start",
 		"build": "tsup src"
 	},
 	"keywords": [],
@@ -19,7 +19,6 @@
 		"@types/deepai": "^1.0.0",
 		"@types/fluent-ffmpeg": "^2.1.21",
 		"@types/node": "^18.14.1",
-		"tsconfig-paths": "^3.14.2",
 		"tsup": "^6.6.3",
 		"tsx": "^3.12.3",
 		"typescript": "^4.9.5"

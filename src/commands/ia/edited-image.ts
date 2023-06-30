@@ -1,4 +1,4 @@
-import { WASocket, downloadMediaMessage } from "@adiwajshing/baileys";
+import { WASocket, downloadMediaMessage } from "@whiskeysockets/baileys";
 import { ParsedMessage } from "@events/messages.upsert";
 import { imageEditor } from "@services/deepai";
 import { downloadAndSaveMediaMessage } from "@utils/tools";

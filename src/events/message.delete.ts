@@ -1,4 +1,4 @@
-import { WASocket, generateMessageID, proto } from "@adiwajshing/baileys";
+import { WASocket, generateMessageID, proto } from "@whiskeysockets/baileys";
 import { ParsedMessage, parsedMessage } from "./messages.upsert";
 import { getDB } from "@utils/db";
 

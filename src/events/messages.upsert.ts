@@ -1,4 +1,4 @@
-import { FullJid, WASocket, isJidGroup, proto } from "@adiwajshing/baileys";
+import { FullJid, WASocket, isJidGroup, proto } from "@whiskeysockets/baileys";
 import { runnerCommand } from "@utils/command";
 import { checkAndSaveDeletedMessage } from "./message.delete";
 import { onUniqueView } from "./message.view-once";

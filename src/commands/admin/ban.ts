@@ -1,4 +1,4 @@
-import { WASocket } from "@adiwajshing/baileys";
+import { WASocket } from "@whiskeysockets/baileys";
 import { ParsedMessage } from "@events/messages.upsert";
 import { isOwner } from "@utils/db";
 

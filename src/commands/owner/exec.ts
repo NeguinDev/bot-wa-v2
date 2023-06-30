@@ -1,4 +1,4 @@
-import { WASocket } from '@adiwajshing/baileys';
+import { WASocket } from '@whiskeysockets/baileys';
 import { ParsedMessage } from '@events/messages.upsert';
 import { exec } from 'child_process';
 

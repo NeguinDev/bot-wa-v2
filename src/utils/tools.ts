@@ -1,4 +1,4 @@
-import { downloadMediaMessage, proto } from "@adiwajshing/baileys";
+import { downloadMediaMessage, proto } from "@whiskeysockets/baileys";
 import fs from 'fs';
 
 export async function downloadAndSaveMediaMessage(path: string, msg: proto.IWebMessageInfo) {

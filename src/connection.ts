@@ -4,7 +4,7 @@ import makeWASocket, {
 	WASocket,
 	makeCacheableSignalKeyStore,
 	useMultiFileAuthState
-} from '@adiwajshing/baileys';
+} from '@whiskeysockets/baileys';
 import pino from 'pino';
 import fs from 'fs';
 import NodeCache from 'node-cache';

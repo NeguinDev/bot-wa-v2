@@ -1,4 +1,4 @@
-import { WASocket, downloadMediaMessage } from "@adiwajshing/baileys";
+import { WASocket, downloadMediaMessage } from "@whiskeysockets/baileys";
 import { ParsedMessage } from "@events/messages.upsert";
 import { uploadFile } from "@services/firebase";
 

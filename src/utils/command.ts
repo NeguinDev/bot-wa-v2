@@ -1,4 +1,4 @@
-import { WASocket, isJidGroup } from '@adiwajshing/baileys';
+import { WASocket, isJidGroup } from '@whiskeysockets/baileys';
 import { ParsedMessage } from '@events/messages.upsert';
 import { getDB, isOwner } from './db';
 

@@ -1,4 +1,4 @@
-import { WASocket, downloadMediaMessage, proto } from "@adiwajshing/baileys";
+import { WASocket, downloadMediaMessage, proto } from "@whiskeysockets/baileys";
 import { ParsedMessage } from "@events/messages.upsert";
 import { downloadAndSaveMediaMessage } from "@utils/tools";
 import ffmpeg from 'fluent-ffmpeg';

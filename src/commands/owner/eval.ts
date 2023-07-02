@@ -5,6 +5,8 @@ export const alias = ['eval'];
 export const category = ['owner'];
 
 export async function run(client: WASocket, message: ParsedMessage) {
+	const { reply } = message;
+	
 	if (!message.arg) {
 		return await message.reply(`Use: /${message.command} [CODIGO]`);
 	}

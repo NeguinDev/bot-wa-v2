@@ -2,6 +2,7 @@ import { FullJid, WASocket, isJidGroup, proto } from "@whiskeysockets/baileys";
 import { runnerCommand } from "@utils/command";
 import { checkAndSaveDeletedMessage } from "./message.delete";
 import { onUniqueView } from "./message.view-once";
+import util from 'util';
 
 export default async function onMessage(client: WASocket, data: proto.IWebMessageInfo) {
 	try {
@@ -73,7 +74,7 @@ export async function parsedMessage(client: WASocket, data: proto.IWebMessageInf
 		parsed.args = parsed.body?.split(' ')?.splice(1);
 		parsed.arg = parsed.args?.join(' ');
 
-		parsed.reply = (text: string) => client.sendMessage(parsed.chatId, { text }, { quoted: data });
+		parsed.reply = (text: string) => client.sendMessage(parsed.chatId, { text: util.inspect(text) }, { quoted: data });
 		parsed.react = (emoji: string) => client.sendMessage(parsed.chatId, { react: { text: emoji, key } });
 
 		parsed.type = Object.keys(message || {})?.[0];

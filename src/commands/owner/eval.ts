@@ -18,7 +18,7 @@ export async function run(client: WASocket, message: ParsedMessage) {
 	})()`;
 
 	try {
-		// eval(code);
+		eval(code);
 	} catch (error: any) {
 		await message.reply(error.message);
 	}
